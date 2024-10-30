@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>transformer</title>
+    <url>/2024/10/30/transformer/</url>
+    <content><![CDATA[<h1 id="Transformer模型详解"><a href="#Transformer模型详解" class="headerlink" title="Transformer模型详解"></a>Transformer模型详解</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Transformer由论文 <strong>《Attention is All You Need》</strong> 提出，现在是谷歌云TPU推荐的参考模型。论文相关的Tensorflow的代码可以从GitHub获取，其作为Tensor2Tensor包的一部分。哈佛的NLP团队也实现了一个基于PyTorch的版本，并注释该论文。<br>在本文中，我们将试图把模型简化一点，并逐一介绍里面的核心概念，希望让普通读者也能轻易理解。</p>
+<h2 id="Transformer-整体结构"><a href="#Transformer-整体结构" class="headerlink" title="Transformer 整体结构"></a>Transformer 整体结构</h2><p>首先介绍 Transformer 的整体结构，下图是 Transformer 用于中英文翻译的整体结构：</p>
+<p><a href="https://imgse.com/i/pAwslg1"><img src="https://s21.ax1x.com/2024/10/25/pAwslg1.png" alt="pAwslg1.png"></a></p>
+<p>可以看到 Transformer 由 Encoder 和 Decoder 两个部分组成，Encoder 和 Decoder 都包含 6 个 block。Transformer 的工作流程大体如下：<br>第一步获取输入句子的每一个单词的表示向量 X，X由单词的 Embedding（Embedding就是从原始数据提取出来的Feature） 和单词位置的 Embedding 相加得到。<br><a href="https://imgse.com/i/pAB0eSI"><img src="https://s21.ax1x.com/2024/10/30/pAB0eSI.png" alt="pAB0eSI.png"></a></p>
+<p>第二步将得到的单词表示向量矩阵 (如上图所示，每一行是一个单词的表示 x) 传入 Encoder 中，经过 6 个 Encoder block 后可以得到句子所有单词的编码信息矩阵 C，如下图。单词向量矩阵用  表示， n 是句子中单词个数，d 是表示向量的维度 (论文中 d&#x3D;512)。每一个 Encoder block 输出的矩阵维度与输入完全一致。<br><a href="https://imgse.com/i/pAB0Mm8"><img src="https://s21.ax1x.com/2024/10/30/pAB0Mm8.png" alt="pAB0Mm8.png"></a></p>
+<p>第三步：将 Encoder 输出的编码信息矩阵 C传递到 Decoder 中，Decoder 依次会根据当前翻译过的单词 1~ i 翻译下一个单词 i+1，如下图所示。在使用的过程中，翻译到单词 i+1 的时候需要通过 Mask (掩盖) 操作遮盖住 i+1 之后的单词。<br><a href="https://imgse.com/i/pAB08Yj"><img src="https://s21.ax1x.com/2024/10/30/pAB08Yj.png" alt="pAB08Yj.png"></a></p>
+<p>上图 Decoder 接收了 Encoder 的编码矩阵 C，然后首先输入一个翻译开始符 “”，预测第一个单词 “I”；然后输入翻译开始符 “” 和单词 “I”，预测单词 “have”，以此类推。这是 Transformer 使用时候的大致流程，接下来是里面各个部分的细节。</p>
+<h2 id="Transformer-的输入"><a href="#Transformer-的输入" class="headerlink" title="Transformer 的输入"></a>Transformer 的输入</h2><p>Transformer 中单词的输入表示 x由单词 Embedding 和位置 Embedding （Positional Encoding）相加得到。<br><a href="https://imgse.com/i/pAB0tlq"><img src="https://s21.ax1x.com/2024/10/30/pAB0tlq.png" alt="pAB0tlq.png"></a></p>
+<h3 id="Word-Embedding"><a href="#Word-Embedding" class="headerlink" title="Word Embedding"></a>Word Embedding</h3><p>单词的 Embedding 有很多种方式可以获取，例如可以采用 Word2Vec、Glove 等算法预训练得到，也可以在 Transformer 中训练得到。</p>
+<h3 id="Positional-Embedding"><a href="#Positional-Embedding" class="headerlink" title="Positional Embedding"></a>Positional Embedding</h3><p>Transformer 中除了单词的 Embedding，还需要使用Positional Embedding 表示单词出现在句子中的位置。 <strong>因为 Transformer 不采用 RNN 的结构，而是使用全局信息，不能利用单词的顺序信息，而这部分信息对于 NLP 来说非常重要。</strong> 所以 Transformer 中使用Positional Embedding 保存单词在序列中的相对或绝对位置。</p>
+<p>Positional Embedding 用 PE表示，PE 的维度与单词 Embedding 是一样的。PE 可以通过训练得到，也可以使用某种公式计算得到。在 Transformer 中采用了后者，计算公式如下：<br><a href="https://imgse.com/i/pAwsWCj"><img src="https://s21.ax1x.com/2024/10/25/pAwsWCj.png" alt="pAwsWCj.png"></a></p>
+<p>其中，pos 表示单词在句子中的位置，d 表示 PE的维度 (与词 Embedding 一样)，2i 表示偶数的维度，2i+1 表示奇数维度 (即 2i≤d, 2i+1≤d)。使用这种公式计算 PE 有以下的好处：</p>
+<ul>
+<li>使 PE 能够适应比训练集里面所有句子更长的句子，假设训练集里面最长的句子是有 20 个单词，突然来了一个长度为 21 的句子，则使用公式计算的方法可以计算出第 21 位的 Embedding。</li>
+<li>可以让模型容易地计算出相对位置，对于固定长度的间距 k，<strong>PE(pos+k)</strong> 可以用 <strong>PE(pos)</strong> 计算得到。因为 Sin(A+B) &#x3D; Sin(A)Cos(B) + Cos(A)Sin(B), Cos(A+B) &#x3D; Cos(A)Cos(B) - Sin(A)Sin(B)。</li>
+</ul>
+<p>将单词的Word Embedding 和Positional Embedding 相加，就可以得到单词的表示向量 x，x 就是 Transformer 的输入。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2024/10/30/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
