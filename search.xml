@@ -19,11 +19,16 @@
 <li>dir(pytorch.__):用来打开某一个包，展示出内部分区。</li>
 <li>help(__):用来查看该分区内部某一工具的使用说明。</li>
 </ol>
-<h2 id="随笔写一些学到的Pycharm小tips"><a href="#随笔写一些学到的Pycharm小tips" class="headerlink" title="随笔写一些学到的Pycharm小tips"></a>随笔写一些学到的Pycharm小tips</h2><ol>
-<li>shift + enter会跳转至下一行的句首</li>
-<li></li>
+<h2 id="TensorBoard-的相关操作"><a href="#TensorBoard-的相关操作" class="headerlink" title="TensorBoard 的相关操作"></a>TensorBoard 的相关操作</h2><ol>
+<li>如何打开Tensorboard 的logs事件文件,<strong>port是指定打开的端口号，默认是6006</strong><br><img src="https://s2.loli.net/2024/10/31/mVlTZMsYXIHCFWk.png" alt="image.png"></li>
 </ol>
-<h2 id="Pytorch-中如何加载数据"><a href="#Pytorch-中如何加载数据" class="headerlink" title="Pytorch 中如何加载数据"></a>Pytorch 中如何加载数据</h2>]]></content>
+<p><code>tensorboard --logdir=logs --port=6006</code></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Deeplearning</title>
+    <url>/2024/10/31/deeplearning/</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Hello World</title>
@@ -42,11 +47,6 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Deeplearning</title>
-    <url>/2024/10/31/deeplearning/</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>Transformer</title>
