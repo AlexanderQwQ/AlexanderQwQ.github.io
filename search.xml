@@ -1,27 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Pytorch Entry</title>
-    <url>/2024/10/31/conda/</url>
-    <content><![CDATA[<h2 id="详细内容教学视频请移步"><a href="#详细内容教学视频请移步" class="headerlink" title="详细内容教学视频请移步"></a>详细内容教学视频请移步</h2><p><a href="https://www.bilibili.com/video/BV1hE411t7RN/">PyTorch深度学习快速入门教程（绝对通俗易懂！）【小土堆】</a> </p>
-<h2 id="更简单易懂的请参考龙哥的Blog"><a href="#更简单易懂的请参考龙哥的Blog" class="headerlink" title="更简单易懂的请参考龙哥的Blog"></a>更简单易懂的请参考龙哥的Blog</h2><p><a href="https://kuaimiaoda.cn/cuda/">pytorch+CUDA 安装教程</a></p>
-<h2 id="Anaconda环境的创建和切换"><a href="#Anaconda环境的创建和切换" class="headerlink" title="Anaconda环境的创建和切换"></a>Anaconda环境的创建和切换</h2><ol>
-<li>打开 Win-&gt;Anaoconda3-&gt;Anaconda Prompt</li>
-<li>命令行 conda create -n <strong>pytorch(名字)</strong> python&#x3D;3.6</li>
-<li>激活环境 conda activate <strong>pytorch(名字)</strong></li>
-</ol>
-<h2 id="Cuda环境的配置和安装"><a href="#Cuda环境的配置和安装" class="headerlink" title="Cuda环境的配置和安装"></a>Cuda环境的配置和安装</h2><ol>
-<li>查看GPU型号 nvidia-smi</li>
-<li>检验 python,import torch,torch.cuda.is_availiable()</li>
-<li>返回 True</li>
-</ol>
-<h2 id="Python学习的两大法宝"><a href="#Python学习的两大法宝" class="headerlink" title="Python学习的两大法宝"></a>Python学习的两大法宝</h2><ol>
-<li>dir(pytorch.__):用来打开某一个包，展示出内部分区。</li>
-<li>help(__):用来查看该分区内部某一工具的使用说明。</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Background of Graduation Project</title>
     <url>/2024/11/04/background/</url>
     <content><![CDATA[<h2 id="放射性骨损伤的研究进展"><a href="#放射性骨损伤的研究进展" class="headerlink" title="放射性骨损伤的研究进展"></a><a href="http://www.ijrmnm.com/article/doi/10.3760/cma.j.cn121381-202007046-00093?viewType=HTML">放射性骨损伤的研究进展</a></h2><h2 id="影响因素"><a href="#影响因素" class="headerlink" title="影响因素"></a>影响因素</h2><p>患者在接受放射治疗之后，可能会出现骨质疏松的情况。</p>
@@ -115,6 +94,27 @@
 </ul>
 <ol start="4">
 <li>精神心理因素<br>压力和焦虑：癌症患者的心理状态可能影响身体的整体健康，包括骨密度，长期的心理压力可能对骨代谢产生负面影响。</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
+    <title>Pytorch Entry</title>
+    <url>/2024/10/31/conda/</url>
+    <content><![CDATA[<h2 id="详细内容教学视频请移步"><a href="#详细内容教学视频请移步" class="headerlink" title="详细内容教学视频请移步"></a>详细内容教学视频请移步</h2><p><a href="https://www.bilibili.com/video/BV1hE411t7RN/">PyTorch深度学习快速入门教程（绝对通俗易懂！）【小土堆】</a> </p>
+<h2 id="更简单易懂的请参考龙哥的Blog"><a href="#更简单易懂的请参考龙哥的Blog" class="headerlink" title="更简单易懂的请参考龙哥的Blog"></a>更简单易懂的请参考龙哥的Blog</h2><p><a href="https://kuaimiaoda.cn/cuda/">pytorch+CUDA 安装教程</a></p>
+<h2 id="Anaconda环境的创建和切换"><a href="#Anaconda环境的创建和切换" class="headerlink" title="Anaconda环境的创建和切换"></a>Anaconda环境的创建和切换</h2><ol>
+<li>打开 Win-&gt;Anaoconda3-&gt;Anaconda Prompt</li>
+<li>命令行 conda create -n <strong>pytorch(名字)</strong> python&#x3D;3.6</li>
+<li>激活环境 conda activate <strong>pytorch(名字)</strong></li>
+</ol>
+<h2 id="Cuda环境的配置和安装"><a href="#Cuda环境的配置和安装" class="headerlink" title="Cuda环境的配置和安装"></a>Cuda环境的配置和安装</h2><ol>
+<li>查看GPU型号 nvidia-smi</li>
+<li>检验 python,import torch,torch.cuda.is_availiable()</li>
+<li>返回 True</li>
+</ol>
+<h2 id="Python学习的两大法宝"><a href="#Python学习的两大法宝" class="headerlink" title="Python学习的两大法宝"></a>Python学习的两大法宝</h2><ol>
+<li>dir(pytorch.__):用来打开某一个包，展示出内部分区。</li>
+<li>help(__):用来查看该分区内部某一工具的使用说明。</li>
 </ol>
 ]]></content>
   </entry>
