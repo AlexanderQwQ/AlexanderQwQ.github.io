@@ -114,27 +114,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Pytorch Entry</title>
-    <url>/2024/10/31/conda/</url>
-    <content><![CDATA[<h2 id="详细内容教学视频请移步"><a href="#详细内容教学视频请移步" class="headerlink" title="详细内容教学视频请移步"></a>详细内容教学视频请移步</h2><p><a href="https://www.bilibili.com/video/BV1hE411t7RN/">PyTorch深度学习快速入门教程（绝对通俗易懂！）【小土堆】</a> </p>
-<h2 id="更简单易懂的请参考龙哥的Blog"><a href="#更简单易懂的请参考龙哥的Blog" class="headerlink" title="更简单易懂的请参考龙哥的Blog"></a>更简单易懂的请参考龙哥的Blog</h2><p><a href="https://kuaimiaoda.cn/cuda/">pytorch+CUDA 安装教程</a></p>
-<h2 id="Anaconda环境的创建和切换"><a href="#Anaconda环境的创建和切换" class="headerlink" title="Anaconda环境的创建和切换"></a>Anaconda环境的创建和切换</h2><ol>
-<li>打开 Win-&gt;Anaoconda3-&gt;Anaconda Prompt</li>
-<li>命令行 conda create -n <strong>pytorch(名字)</strong> python&#x3D;3.6</li>
-<li>激活环境 conda activate <strong>pytorch(名字)</strong></li>
-</ol>
-<h2 id="Cuda环境的配置和安装"><a href="#Cuda环境的配置和安装" class="headerlink" title="Cuda环境的配置和安装"></a>Cuda环境的配置和安装</h2><ol>
-<li>查看GPU型号 nvidia-smi</li>
-<li>检验 python,import torch,torch.cuda.is_availiable()</li>
-<li>返回 True</li>
-</ol>
-<h2 id="Python学习的两大法宝"><a href="#Python学习的两大法宝" class="headerlink" title="Python学习的两大法宝"></a>Python学习的两大法宝</h2><ol>
-<li>dir(pytorch.__):用来打开某一个包，展示出内部分区。</li>
-<li>help(__):用来查看该分区内部某一工具的使用说明。</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>Objects</title>
     <url>/2024/11/06/objects/</url>
     <content><![CDATA[<h2 id="类的成员方法"><a href="#类的成员方法" class="headerlink" title="类的成员方法"></a>类的成员方法</h2><ol>
@@ -477,6 +456,27 @@
 <h2 id="pyecharts的地图可视化"><a href="#pyecharts的地图可视化" class="headerlink" title="pyecharts的地图可视化"></a>pyecharts的地图可视化</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts.charts <span class="keyword">import</span> Map</span><br><span class="line"><span class="keyword">from</span> pyecharts.options <span class="keyword">import</span> VisualMapOpts</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成地图</span></span><br><span class="line"><span class="built_in">map</span> = Map()</span><br><span class="line"><span class="comment"># 设置地图的标题和数据</span></span><br><span class="line">data = [(<span class="string">&quot;广东&quot;</span>, <span class="number">104</span>), (<span class="string">&quot;北京&quot;</span>, <span class="number">60</span>), (<span class="string">&quot;上海&quot;</span>, <span class="number">50</span>), (<span class="string">&quot;江苏&quot;</span>, <span class="number">30</span>), (<span class="string">&quot;浙江&quot;</span>, <span class="number">20</span>)]</span><br><span class="line"><span class="comment"># 添加数据</span></span><br><span class="line"><span class="built_in">map</span>.add(<span class="string">&quot;中国地图&quot;</span>, data, <span class="string">&quot;china&quot;</span>)</span><br><span class="line"><span class="comment"># 设置地图的标题和颜色</span></span><br><span class="line"><span class="built_in">map</span>.set_global_opts(</span><br><span class="line">    visualmap_opts=VisualMapOpts(</span><br><span class="line">        is_show=<span class="literal">True</span>,  <span class="comment"># 是否显示</span></span><br><span class="line">        is_piecewise=<span class="literal">True</span>,  <span class="comment"># 是否分段显示 手动设置</span></span><br><span class="line">        pieces=[  <span class="comment"># 设置分段的颜色</span></span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">0</span>, <span class="string">&quot;max&quot;</span>: <span class="number">50</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;0-50&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#50a3ba&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">51</span>, <span class="string">&quot;max&quot;</span>: <span class="number">100</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;51-100&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#e098c7&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">101</span>, <span class="string">&quot;max&quot;</span>: <span class="number">150</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;101-150&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#f6e8c3&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">151</span>, <span class="string">&quot;max&quot;</span>: <span class="number">200</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;151-200&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#f2c5a4&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">201</span>, <span class="string">&quot;max&quot;</span>: <span class="number">300</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;201-300&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#e0631a&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">301</span>, <span class="string">&quot;max&quot;</span>: <span class="number">400</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;301-400&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#b53b3a&quot;</span>&#125;,</span><br><span class="line">            &#123;<span class="string">&quot;min&quot;</span>: <span class="number">401</span>, <span class="string">&quot;max&quot;</span>: <span class="number">500</span>, <span class="string">&quot;label&quot;</span>: <span class="string">&quot;401-500&quot;</span>, <span class="string">&quot;color&quot;</span>: <span class="string">&quot;#b70f0a&quot;</span>&#125;,</span><br><span class="line">        ],</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line"><span class="comment"># 绘制地图</span></span><br><span class="line"><span class="built_in">map</span>.render(<span class="string">&quot;basiclearning.html&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 
+]]></content>
+  </entry>
+  <entry>
+    <title>Pytorch Entry</title>
+    <url>/2024/10/31/conda/</url>
+    <content><![CDATA[<h2 id="详细内容教学视频请移步"><a href="#详细内容教学视频请移步" class="headerlink" title="详细内容教学视频请移步"></a>详细内容教学视频请移步</h2><p><a href="https://www.bilibili.com/video/BV1hE411t7RN/">PyTorch深度学习快速入门教程（绝对通俗易懂！）【小土堆】</a> </p>
+<h2 id="更简单易懂的请参考龙哥的Blog"><a href="#更简单易懂的请参考龙哥的Blog" class="headerlink" title="更简单易懂的请参考龙哥的Blog"></a>更简单易懂的请参考龙哥的Blog</h2><p><a href="https://kuaimiaoda.cn/cuda/">pytorch+CUDA 安装教程</a></p>
+<h2 id="Anaconda环境的创建和切换"><a href="#Anaconda环境的创建和切换" class="headerlink" title="Anaconda环境的创建和切换"></a>Anaconda环境的创建和切换</h2><ol>
+<li>打开 Win-&gt;Anaoconda3-&gt;Anaconda Prompt</li>
+<li>命令行 conda create -n <strong>pytorch(名字)</strong> python&#x3D;3.6</li>
+<li>激活环境 conda activate <strong>pytorch(名字)</strong></li>
+</ol>
+<h2 id="Cuda环境的配置和安装"><a href="#Cuda环境的配置和安装" class="headerlink" title="Cuda环境的配置和安装"></a>Cuda环境的配置和安装</h2><ol>
+<li>查看GPU型号 nvidia-smi</li>
+<li>检验 python,import torch,torch.cuda.is_availiable()</li>
+<li>返回 True</li>
+</ol>
+<h2 id="Python学习的两大法宝"><a href="#Python学习的两大法宝" class="headerlink" title="Python学习的两大法宝"></a>Python学习的两大法宝</h2><ol>
+<li>dir(pytorch.__):用来打开某一个包，展示出内部分区。</li>
+<li>help(__):用来查看该分区内部某一工具的使用说明。</li>
+</ol>
 ]]></content>
   </entry>
   <entry>
