@@ -190,7 +190,7 @@
 <ul>
 <li>chgrp 修改文件所属组<br>  chgrp -R groupname filename 将文件filename及其子文件所属组修改为groupname</li>
 <li>chown 修改文件所有者<br>  chown -R username filename 将文件filename及其子文件所有者修改为username</li>
-<li>chmod 修改文件权限<br>  chmod -R 765 filename 将文件filename及其子文件权限修改为765（765表示所有者有读写执行权限，所属组有读写权限，其他用户有读执行权限）<br>  读权限为4，写权限为2，执行权限为1，设置权限的时候直接设置数字即可</li>
+<li>chmod 修改文件权限<br>  chmod -R 765 filename 将文件filename及其子文件权限修改为765（765表示所有者有读写执行权限，所属组有读写权限，其他用户有读执行权限）<br>  读权限为4，写权限为2，执行权限为1，设置权限的时候直接设置数字相加即可</li>
 </ul>
 <h2 id="文件内容查看"><a href="#文件内容查看" class="headerlink" title="文件内容查看"></a>文件内容查看</h2><ul>
 <li>cat 查看文件内容<br>  cat filename 查看文件filename的内容</li>
@@ -236,7 +236,106 @@
 <li>number &lt;space&gt; 命令模式下光标向右移动number个字符</li>
 <li>number &lt;enter&gt; 命令模式下光标向下移动number行</li>
 </ul>
-<h2 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h2>]]></content>
+<h2 id="账号管理"><a href="#账号管理" class="headerlink" title="账号管理"></a>账号管理</h2><p>增删改用户信息：</p>
+<ul>
+<li>useradd -m username 创建用户，-m表示创建用户的同时创建用户的主目录，在&#x2F;home目录下<ul>
+<li>-m 创建用户的同时创建用户的主目录</li>
+<li>-c “comment” 指定用户的注释信息</li>
+<li>-d 指定用户的主目录</li>
+<li>-g 指定用户所属的用户组</li>
+<li>-G 指定用户所属的其他用户组</li>
+<li>-s 指定用户的shell</li>
+<li>-u 指定用户的UID</li>
+<li>-p 指定用户的密码</li>
+</ul>
+</li>
+<li>passwd username 修改用户密码</li>
+<li>userdel username 删除用户，不会删除用户的主目录</li>
+<li>userdel -r username 删除用户，同时删除用户的主目录</li>
+<li>usermod -m username 修改用户的主目录</li>
+</ul>
+<p>切换用户步骤：</p>
+<ol>
+<li>su username 切换到用户username</li>
+<li>exit 退出当前用户<ul>
+<li>hostname 查看主机名</li>
+<li>hostname newname 修改主机名为newname，服务器端操作需要重启生效</li>
+</ul>
+</li>
+<li>可以在su和username之间加上-，表示切换到用户username的同时切换到用户的主目录<br> $ 表示当前用户是普通用户<h1 id="表示当前用户是超级用户"><a href="#表示当前用户是超级用户" class="headerlink" title="表示当前用户是超级用户"></a>表示当前用户是超级用户</h1></li>
+</ol>
+<p>用户密码设置：</p>
+<ul>
+<li>passwd username 设置用户username的密码<br>  在输入的过程中不显示密码</li>
+</ul>
+<p>锁定账户：</p>
+<ul>
+<li>passwd -l username 锁定用户username</li>
+<li>passwd -u username 解锁用户username</li>
+</ul>
+<h2 id="用户组管理"><a href="#用户组管理" class="headerlink" title="用户组管理"></a>用户组管理</h2><p>增删改用户组信息：</p>
+<ul>
+<li>groupadd groupname 创建用户组<ul>
+<li>创建完用户组后，能得到该用户组的组的ID</li>
+<li>groupadd -g groupid groupname 创建用户组，指定用户组的组的ID为groupid</li>
+</ul>
+</li>
+<li>groupmod -n newgroupname oldgroupname 修改用户组名为newgroupname</li>
+<li>groupdel groupname 删除用户组</li>
+<li>groupmod -g groupid groupname 修改用户组的组的ID为groupid<ul>
+<li>-g groupid 修改用户组的组的ID为groupid</li>
+<li>-n groupname 修改用户组名为groupname</li>
+</ul>
+</li>
+</ul>
+<p>拓展：文件的查看</p>
+<ul>
+<li>&#x2F;etc&#x2F;&#x2F;passwd 查看用户信息<ul>
+<li>用户名：口令密码(X 不可见)：UID(用户标识号 一般自增)：GID(组标识号 一般自增)：注释信息：主目录：默认登录shell</li>
+</ul>
+</li>
+<li>&#x2F;etc&#x2F;group 查看用户组信息</li>
+<li>&#x2F;etc&#x2F;shadow 查看用户密码信息</li>
+</ul>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><ul>
+<li>df -h 查看磁盘使用情况 -h 表示以人类可读的方式显示</li>
+<li>du -h 查看当前目录下文件占用大小</li>
+</ul>
+<p>Mac或者linux挂载NTFS硬盘文件：</p>
+<ul>
+<li>mount &#x2F;dev&#x2F;device &#x2F;mnt&#x2F;mountpoint 挂载设备到挂载点</li>
+<li>umount &#x2F;mnt&#x2F;mountpoint 卸载设备 -f表示强制卸载</li>
+</ul>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>基本概念：</p>
+<ul>
+<li>进程：正在运行的程序，每个进程有独立的内存空间，进程间相互独立，拥有自己的PID</li>
+<li>线程：进程中的执行单元</li>
+<li>守护进程：在后台运行的进程，不受用户登录状态影响</li>
+<li>进程的存在方式：前台（程序）&#x2F;后台运行（服务）</li>
+</ul>
+<p>命令操作：</p>
+<ul>
+<li>ps -a 查看当前终端下的所有进程信息</li>
+<li>ps -u 查看当前用户的所有进程信息</li>
+<li>ps -x 查看后台进程参数信息</li>
+<li>ps -aux 查看所有进程信息<ul>
+<li>ps -aux | grep keyword 查看包含keyword的进程信息</li>
+<li>| 表示管道，将前一个命令的输出作为后一个命令的输入  </li>
+<li>grep 表示过滤，将包含keyword的行输出</li>
+</ul>
+</li>
+<li>ps -ef 查看所有进程信息，包括进程的父进程</li>
+<li>pstree 查看进程树<ul>
+<li>p 显示进程的父PID</li>
+<li>u 显示用户组</li>
+</ul>
+</li>
+</ul>
+<p>结束进程：</p>
+<ul>
+<li>kill -9 PID 结束进程，-9表示强制结束进程</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>Objects</title>
